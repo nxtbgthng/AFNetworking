@@ -68,8 +68,9 @@ static void AFGetAlertViewTitleAndMessageFromError(NSError *error, NSString * __
         if (error) {
             NSString *title, *message;
             AFGetAlertViewTitleAndMessageFromError(error, &title, &message);
-
+#if !defined(AF_APP_EXTENSIONS)
             [[[UIAlertView alloc] initWithTitle:title message:message delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles, nil] show];
+#endif
         }
 
         [[NSNotificationCenter defaultCenter] removeObserver:observer name:AFNetworkingTaskDidCompleteNotification object:notification.object];
@@ -97,8 +98,9 @@ static void AFGetAlertViewTitleAndMessageFromError(NSError *error, NSString * __
             if (error) {
                 NSString *title, *message;
                 AFGetAlertViewTitleAndMessageFromError(error, &title, &message);
-
+#if !defined(AF_APP_EXTENSIONS)
                 [[[UIAlertView alloc] initWithTitle:title message:message delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles, nil] show];
+#endif
             }
         }
 
